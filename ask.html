@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Will You Be My Valentine?</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+
+    @keyframes float {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100px);
+        opacity: 0;
+      }
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 2rem;
+      color: #ff66b2;
+      animation: float 6s ease-in-out infinite;
+      z-index: 10;
+    }
+
+    .love-letter {
+      background: #fff4f9;
+      border: 3px solid #ff66b2;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      width: 90%;
+      max-width: 600px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+
+    .love-letter::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 20px;
+      background: linear-gradient(to right, #ff66b2, #fff4f9);
+      border-radius: 20px 20px 0 0;
+    }
+
+    .container {
+      padding: 20px;
+      background-color: #ffffffb3;
+      border-radius: 12px;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    .heart-style {
+      font-size: 2.5rem;
+    }
+
+
+    .heart1 { color: #ff1e68; }
+    .heart2 { color: #ff66b2; }
+    .heart3 { color: #ff4da6; }
+    .heart4 { color: #ff3399; }
+
+
+    .seal {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: radial-gradient(circle, #ff66b2 40%, #ff3399);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-weight: bold;
+      font-size: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .seal:before {
+      content: '❤️';
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body class="font-sans h-screen flex items-center justify-center overflow-hidden bg-gradient-to-r from-pink-100 via-purple-200 to-pink-300">
+
+  <div class="relative love-letter text-center p-8">
+    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-pink-600 mb-6">Will you be my Valentine?</h1>
+
+    <div class="relative flex flex-col sm:flex-row items-center justify-center gap-6 mb-8">
+      <button id="yesButton" class="px-8 py-3 bg-pink-500 text-white text-lg sm:text-2xl rounded-full shadow-xl transition-all duration-300 hover:bg-pink-600 focus:outline-none">Yes, of course!</button>
+      <button id="noButton" class="px-6 py-3 bg-gray-700 text-white text-lg sm:text-xl rounded-full shadow-lg transition-all duration-300 hover:bg-gray-800 focus:outline-none">No...</button>
+    </div>
+
+    <div id="beggingContainer" class="text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-700 mb-6"></div>
+    <div id="imageContainer" class="flex justify-center gap-6 mb-6"></div>
+
+    <div id="animationContainer" class="hidden mt-12 flex justify-center">
+      <h2 class="text-4xl font-bold text-green-500">I knew you'd say yes😏</h2>
+      <div id="confetti">✨🎉💖</div>
+    </div>
+
+
+    <div class="seal"></div>
+  </div>
+
+  <script src="script.js"></script>
+
+
+  <script>
+    function createFloatingHearts() {
+      const heartCount = 30;
+      for (let i = 0; i < heartCount; i++) {
+        const heart = document.createElement("span");
+        const heartType = Math.floor(Math.random() * 4) + 1;
+        heart.classList.add("heart");
+
+ 
+        heart.style.left = `${Math.random() * 100}vw`; // Random X position
+        heart.style.top = `${Math.random() * 100}vh`;  // Random Y position
+        heart.style.animationDuration = `${Math.random() * 2 + 4}s`;  // Random animation duration for variety
+
+        // Randomize heart style for variety
+        if (heartType === 1) {
+          heart.classList.add("heart1");
+        } else if (heartType === 2) {
+          heart.classList.add("heart2");
+        } else if (heartType === 3) {
+          heart.classList.add("heart3");
+        } else {
+          heart.classList.add("heart4");
+        }
+
+        document.body.appendChild(heart);
+      }
+    }
+    createFloatingHearts();
+  </script>
+
+</body>
+</html>

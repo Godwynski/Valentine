@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Love Letter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1"></script>
+    <style>
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100px); opacity: 0; }
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 1.5rem;
+            color: #ff66b2;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .love-letter {
+            background: #fff4f9;
+            border: 3px solid #ff66b2;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            max-width: 90%;
+            width: 400px;
+        }
+
+        .seal {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            width: 35px;
+            height: 35px;
+            background: radial-gradient(circle, #ff66b2 40%, #ff3399);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        
+        .seal:before {
+            content: '❤️';
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body class="bg-pink-100 flex items-center justify-center min-h-screen p-4 overflow-auto">
+    
+    <!-- Floating hearts -->
+    <div class="heart" style="top: 10%; left: 10%;">❤️</div>
+    <div class="heart" style="top: 20%; left: 75%;">💖</div>
+    <div class="heart" style="top: 50%; left: 60%;">💘</div>
+
+    <div class="love-letter">
+        <h1 id="firstH1" class="text-2xl md:text-3xl font-bold text-pink-600 animate-pulse">
+            Hi there! you're the one I've always WANTED for a long time now 💌
+        </h1>
+        
+        <div id="imageContainer" class="mt-4 hidden">
+            <h1 class="text-2xl md:text-3xl font-bold text-pink-600 animate-pulse">I Literally badly WANTED, so I've been thinking... ❤️</h1>
+            <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXBwMjY3MzcxNGYxaXF5cDRlem9qZmt3MXh2dGh2YTlzbWd2dG9wNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/iL2ZEeIEr2eBx5Swep/giphy.gif" alt="Love Image" class="rounded-xl shadow-lg w-full max-w-xs md:max-w-sm">
+        </div>
+
+        <div class="flex justify-center mt-6">
+            <button id="soButton" class="bg-pink-500 text-white py-2 px-4 rounded-full text-lg font-semibold hover:bg-pink-700 transition duration-300 animate-[heartbeat_2s_infinite]">
+                So...
+            </button>
+        </div>
+
+        <div class="seal"></div>
+    </div>
+
+    <script>
+        let clickCount = 0;
+        const soButton = document.getElementById("soButton");
+        const imageContainer = document.getElementById("imageContainer");
+        const firstH1 = document.getElementById("firstH1");
+
+        // Button click event
+        soButton.addEventListener("click", () => {
+            if (clickCount === 0) {
+                // Hide first H1 and show image container
+                firstH1.classList.add("hidden");
+                imageContainer.classList.remove("hidden");
+                confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+
+                // Change button text
+                soButton.innerText = "Then...";
+                clickCount++;
+            } else {
+                // Second click: Redirect to ask.html
+                window.location.href = "ask.html";
+            }
+        });
+    </script>
+</body>
+
+</html>
+
+
+
+
+
